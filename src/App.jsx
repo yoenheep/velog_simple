@@ -32,9 +32,9 @@ function App() {
       <Header />
 
       <main>
-        {post.map((post) => {
-          <Main post={post} />;
-        })}
+        {post.map((post) => (
+          <Main key={post.id} post={post} />
+        ))}
       </main>
 
       <Modal />
