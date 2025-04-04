@@ -118,7 +118,14 @@ main .container {
 }
 
 main h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
   font-size: 1.3rem;
+  width: 100%;
+  text-align: left;
 }
 
 main p {

@@ -1,15 +1,31 @@
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import Cat from "../assets/cat.jpg";
-const Modal = () => {
+const Modal = forwardRef(({ post, onClick }, ref) => {
+  const dialogRef = useRef(null);
+
+  useImperativeHandle(ref, () => {
+    return {
+      open: () => {
+        dialogRef.current.showModal();
+      },
+      closeModal: () => {
+        dialogRef.current.close();
+      },
+    };
+  });
+
+  if (!post) return null; // ✅ post가 null이면 렌더링하지 않음
+
   return (
-    <dialog>
-      <button>x</button>
-      <h2>title이라는 것</h2>
-      <p>누군가</p>
+    <dialog ref={dialogRef}>
+      <button onClick={onClick}>x</button>
+      <h2>{post.title}</h2>
+      <p>{post.userId}</p>
       <hr />
       <img src={Cat} />
-      <p>s일단 내용</p>
+      <p>{post.body}</p>
     </dialog>
   );
-};
+});
 
 export default Modal;
